@@ -51,12 +51,12 @@ most_permissive = []
 
 startDT = datetime.datetime.now()
 
-# for collection in letter_collections:
-#     #print(collection)
-#     x = count_allowed_words(collection)
-#     if x > most_allowed:
-#         most_permissive = collection
-#         most_allowed = x
+for collection in letter_collections:
+    #print(collection)
+    x = count_allowed_words(collection)
+    if x > most_allowed:
+        most_permissive = collection
+        most_allowed = x
 
 
 endDT = datetime.datetime.now()
