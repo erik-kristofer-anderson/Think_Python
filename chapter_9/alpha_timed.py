@@ -2,7 +2,7 @@
 # five letters allows the most words
 
 from itertools import combinations
-
+import datetime
 
 
 
@@ -49,12 +49,20 @@ letter_collections = list(comb)
 most_allowed = 0
 most_permissive = []
 
-for collection in letter_collections:
-    print(collection)
-    x = count_allowed_words(collection)
-    if x > most_allowed:
-        most_permissive = collection
-        most_allowed = x
+startDT = datetime.datetime.now()
+
+# for collection in letter_collections:
+#     #print(collection)
+#     x = count_allowed_words(collection)
+#     if x > most_allowed:
+#         most_permissive = collection
+#         most_allowed = x
+
+
+endDT = datetime.datetime.now()
+
 
 print(most_permissive, "allows the most letters")
 print("It allows", most_allowed, "words")
+print('start time:', str(startDT))
+print('end time:', str(endDT))
