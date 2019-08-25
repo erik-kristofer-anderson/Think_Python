@@ -4,6 +4,10 @@
 # be one
 
 def is_triple_double(word):
+    """ determines if a word contains consecutive double letters
+
+    word: a string
+    """
     i = 0
     while i < len(word) - 5:
         s = word[i:i+6]
@@ -19,3 +23,5 @@ for line in fin:
     word = line.strip()
     if is_triple_double(word):
         print(word)
+
+# done
