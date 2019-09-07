@@ -43,6 +43,7 @@ for line in fin:
 
 def in_bisect(t, word):
     i = bisect.bisect_left(t, word)
+    print(i)
     if t[i] == word:
         return True
     else:
@@ -53,3 +54,6 @@ print('starting bisect search')
 print(in_bisect(t, search_word))
 end = time.time()
 print(end - start)
+
+# for some reason the bisect search is not working. problem for list index
+# out of range
