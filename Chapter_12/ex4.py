@@ -93,10 +93,10 @@ words = load_word_list()
 # print(is_reducible(word, words)) # True
 
 # test it on the list of words:
-words = load_word_list()
-for word in words:
-    if is_reducible(word, words):
-        print(word)
+# words = load_word_list()
+# for word in words:
+#     if is_reducible_(word, words):
+#         print(word)
 # it is printing reducible words (yay!) but it is very slow.
 
 # write a new function: is_reducible_memo that uses a dictionary
@@ -112,8 +112,15 @@ def is_reducible_memo(word, words):
         for child in children:
             if is_reducible(child, words):
                 res = True
+            reducible_memo[child] = True
         if res == True:
             return is_reducible(child, words)
     else:
         reducible_memo[word] = False
         return False
+
+
+words = load_word_list()
+for word in words:
+    if is_reducible_memo(word, words):
+        print(word)
