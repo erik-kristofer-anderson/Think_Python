@@ -37,3 +37,7 @@ for line in lines:
 
 for item in checksum_dict.items():
     print(item)
+
+for checksum, filenames in checksum_dict.items():
+    if len(filenames) > 1:
+        print(filenames, "are duplicate files")
