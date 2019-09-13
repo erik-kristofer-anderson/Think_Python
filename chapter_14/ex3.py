@@ -10,6 +10,7 @@ import os
 cmd = 'ls'
 fp = os.popen(cmd)
 res = fp.read()
+print(res)
 
 lines = res.split('\n') # TODO this breaks by splitting by spaces in
 # file names. for now I will sanatize the filenames of spaces
@@ -21,17 +22,24 @@ lines = res.split('\n') # TODO this breaks by splitting by spaces in
 checksum_dict = {}
 for line in lines:
 
+
     if '.' in line:
+
         filename = line
         cmd = 'md5 ' + filename
         fp = os.popen(cmd)
-        checksum = fp.read()
+        print(type(fp.read()))
+        #checksum = fp.read()
+        checksum = 'asdf'
+        print(type(checksum))
         checksum = checksum[-32:-3]
         #print(checksum, filename)
         if checksum in checksum_dict:
             checksum_dict[checksum].append(filename)
         else:
             checksum_dict[checksum] = [filename]
+    else: # if '.' not in line
+        pass # search the stuff in that directory
 
 #print(checksum_dict)
 
