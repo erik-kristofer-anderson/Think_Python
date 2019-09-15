@@ -50,7 +50,6 @@ def make_checksum_dict():
 
 
 checksum_dict = make_checksum_dict()
-#print(checksum_dict)
 for item in checksum_dict.items():
     print(item)
 
