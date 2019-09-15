@@ -7,40 +7,71 @@ Turtle objects
 
 import math
 import turtle
-import my_shape_classes
-import my_turtle_functions
+from my_shape_classes import *
+from my_turtle_functions import *
 
 
-def draw_rect(t, rect):
-    # move to corner (turtle starts out facing right)
-    move(t, rect.corner.x)
-    turn(t, 90)
-    move(t, rect.corner.y)
+# def draw_rect(t, rect):
+#     # move to corner (turtle starts out facing right)
+#     move(t, rect.corner.x)
+#
+#     turn(t, 90)
+#     move(t, rect.corner.y)
+#
+#     # draw lines around the Rectangle
+#     turn(t, -90)
+#     draw_line(t, rect.width)
+#     turn(t, 90)
+#     draw_line(t, rect.height)
+#     turn(t, 90)
+#     draw_line(t, rect.width)
+#     turn(t, 90)
+#     draw_line(t, rect.height)
+#
+#
+#
+# p = Point()
+# rect = Rectangle()
+# rect.corner = Point()
+# rect.corner.x = 100
+# rect.corner.y = -150
+# rect.width = 50
+# rect.height = 100
 
-    # mover around the Rectangle
-    turn(t, -90)
-    draw_line(t, rect.length)
+
+
+### draw a Circle
+def draw_circle(t, circ):
+    move(t, circ.center.x)
     turn(t, 90)
-    draw_line(t, rect.height)
-    turn(t, 90)
-    draw_line(t, rect.length)
-    turn(t, 90)
-    draw_line(t, rect.height)
+    t.pd()
+    circle(t, circ.radius)
+
+
+
+
+
+
+
+circ = Circle()
+circ.center = Point()
+circ.center.x = 300
+circ.center.y = 200
+circ.radius = 50
+
+
+
+
+
+
+
+
 
 
 dave = turtle.Turtle()
-p = Point()
-rect = Rectangle()
-rect.corner = Point()
-rect.corner.x = 100
-rect.corner.y = -200
-rect.width = 200
-rect.height = 300
+draw_circle(dave, circ)
 
 
-
-
-
-draw_rect(dave, rect)
+# draw_rect(dave, rect)
 
 turtle.mainloop()

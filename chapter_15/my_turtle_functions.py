@@ -4,7 +4,7 @@ def draw_line(t, length):
     t: Turtle object
     length: length of line segment
     """
-    t.pendown()
+    t.pd()
     t.fd(length)
 
 def turn(t, angle):
@@ -13,6 +13,7 @@ def turn(t, angle):
     t: Turtle object
     angle: degrees of turn
     """
+    t.lt(angle)
 
 def move(t, length):
     """ Lifts the pen and moves the turtle
@@ -21,5 +22,19 @@ def move(t, length):
     t: Turtle object
     length: distance to move
     """
-    t.penup()
+    t.pu()
     t.fd(length)
+
+
+# define a function to print a polygon
+def polygon(t, length, n):
+    for i in range(n):
+        t.fd(length)
+        t.lt(360 / n)
+
+# define a function to display a circle
+def circle(t, r):
+    # function of turtle, t, and radius, r
+    c = 2 * 3.14159 * r
+    n = 200
+    polygon(t, c / n, n)
