@@ -117,7 +117,7 @@ class Deck:
         for i in range(num):
             hand.add_card(self.pop_card())
 
-    ### add a deck method
+    ### add a deck method to deal a hande
     def deal_hands(self, num_hands = 2, num_cards = 5):
         hands = []
         for i in range(num_hands):

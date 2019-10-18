@@ -26,6 +26,15 @@ class PokerHand(Hand):
         for card in self.cards:
             self.suits[card.suit] = self.suits.get(card.suit, 0) + 1
 
+    def rank_hist(self):
+        """Builds a histogram of the ranks that appear in the hand.
+
+        Stores the result in attribute ranks.
+        """
+        self.ranks = {}
+        for card in self.cards:
+            self.ranks[card.rank] = self.ranks.get(card.rank, 0) + 1
+
     def has_flush(self):
         """Returns True if the hand has a flush, False otherwise.
 
@@ -37,15 +46,6 @@ class PokerHand(Hand):
                 return True
         return False
 
-
-    def rank_hist(self):
-        """Builds a histogram of the ranks that appear in the hand.
-
-        Stores the result in attribute ranks.
-        """
-        self.ranks = {}
-        for card in self.cards:
-            self.ranks[card.rank] = self.ranks.get(card.rank, 0) + 1
 
     ### add method has_pair
     def has_pair(self):
@@ -90,7 +90,7 @@ class PokerHand(Hand):
     ### add method has_straight
     def has_straight(self):
         """ returns True if there are a set of five cards in order by rank
-        (ace can be high or low) other wise returns false
+        (ace can be high or low) other wise returns False
         """
         self.rank_hist()
         self.ranks[14] = self.ranks.get(1, 0) # allows for ace is high
@@ -110,25 +110,20 @@ class PokerHand(Hand):
 
         return False
 
-    def has_full_house(self): #todo
+    def has_full_house(self): # to test # add method has_full_house
+        """ returns True if any suit has two cards and any other
+        suit has three cards
+        """
         self.suit_hist()
-        self.rank_hist()
-
-    def pair_hist(): #TODO
-        """builds a histogram of suits that have a pair (has_pair is true)
-        stores the result in attribute pairs
-        """
-        self.pairs = {}
-        pass
-
-
-    def three_hist(): #TODO
-        """builds a histogram of suits that have a three of a kind
-        (has_three_of_a_kind is true)
-        stores the result in attribute threes
-        """
-        self.threes = {}
-        pass
+        test_pair = False
+        test_three = False
+        count = 0
+        for val in self.suits.values():
+            if val == 2:
+                test_pair = True
+            if val == 3:
+                test_three = True
+        return test_pair and test_three
 
     def has_four_of_a_kind(self):
         """ returns true if the hand contains at least one instance of four of of a kind
@@ -141,47 +136,72 @@ class PokerHand(Hand):
         return False
 
     def has_straight_flush(self): #TODO
-    """returns true if the hand has a straight flush
-    (I'm not sure how to do this)
-    """
+        """returns true if the hand has a straight flush
+        (I'm not sure how to do this)
+        """
+        result = self.has_straight() and self.has_flush()
+        return result
 
 if __name__ == '__main__':
     # make a deck
-    deck = Deck()
-    deck.shuffle()
-
-    # deal the cards and classify the hands
-    for i in range(1):
-        hand = PokerHand()
-        deck.move_cards(hand, 5)
-        #hand.sort()
-        hand.sort_by_rank()
-        print(hand)
-        # print(hand.has_flush())
-        # print('')
-        print(hand.has_four_of_a_kind())
-        print('')
+    # deck = Deck()
+    # deck.shuffle()
+    #
+    # hand = PokerHand()
+    # hand = PokerHand()
+    # deck.move_cards(hand, 5)
+    # hand.sort()
+    # hand.suit_hist()
 
 
+    ### test straight flush
     test = False
-    test_count = 0
     while test == False:
-        print(test_count)
-    # make a deck
         deck = Deck()
         deck.shuffle()
 
-    # deal the cards and classify the hands
-        for i in range(1):
-            hand = PokerHand()
-            deck.move_cards(hand, 5)
-            hand.sort()
-            hand.sort_by_rank()
-            print(hand)
-            # print(hand.has_flush())
-            # print('')
+        hand = PokerHand()
+        hand = PokerHand()
+        deck.move_cards(hand, 5)
+        hand.sort()
+        print(hand)
+        test = hand.has_straight_flush()
+        print(test)
+        print('')
 
-            test = hand.has_four_of_a_kind()
-            print(test)
-            print('')
-        test_count += 1
+
+    # # deal the cards and classify the hands
+    # for i in range(1):
+    #     hand = PokerHand()
+    #     deck.move_cards(hand, 5)
+    #     #hand.sort()
+    #     hand.sort_by_rank()
+    #     print(hand)
+    #     # print(hand.has_flush())
+    #     # print('')
+    #     print(hand.has_four_of_a_kind())
+    #     print('')
+    #
+    #
+    # test = False
+    # test_count = 0
+    # while test == False:
+    #     print(test_count)
+    # # make a deck
+    #     deck = Deck()
+    #     deck.shuffle()
+    #
+    # # deal the cards and classify the hands
+    #     for i in range(1):
+    #         hand = PokerHand()
+    #         deck.move_cards(hand, 5)
+    #         hand.sort()
+    #         hand.sort_by_rank()
+    #         print(hand)
+    #         # print(hand.has_flush())
+    #         # print('')
+    #
+    #         test = hand.has_four_of_a_kind()
+    #         print(test)
+    #         print('')
+        # test_count += 1
